@@ -36,7 +36,15 @@ export function AIChat() {
     setIsLoading(true);
 
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+      const apiKey = process.env.GEMINI_API_KEY || import.meta.env.VITE_GEMINI_API_KEY;
+      
+      if (!apiKey) {
+        setMessages(prev => [...prev, { role: 'assistant', content: 'Lỗi: Chưa cấu hình API Key cho AI. Vui lòng thêm biến môi trường GEMINI_API_KEY hoặc VITE_GEMINI_API_KEY trên hosting của bạn.' }]);
+        setIsLoading(false);
+        return;
+      }
+
+      const ai = new GoogleGenAI({ apiKey: apiKey });
       const response = await ai.models.generateContent({
         model: "gemini-3-flash-preview",
         contents: [
