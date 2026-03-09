@@ -237,7 +237,7 @@ export default function App() {
           <div className="flex items-center gap-3">
             {/* Thay src bằng đường dẫn logo của bạn (ví dụ: /logo.png) */}
             <img 
-              src="https://api.dicebear.com/7.x/shapes/svg?seed=cybersec&backgroundColor=0a0e17&shape1Color=34d399" 
+              src="logo.png" 
               alt="Logo" 
               className="w-10 h-10 rounded-lg border border-slate-700/50"
               referrerPolicy="no-referrer"
